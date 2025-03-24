@@ -16,38 +16,72 @@ import java_cup.runtime.*;
 %line
 %column
 
-inteiro = 0|[0-9][0-9]*
-brancos = [\n | \t | \r]
-ID = [_|a-z|A-Z][a-z|A-Z|0-9|_]*
+// Expressões regulares
+inteiro = 0|[1-9][0-9]*
+
+// Palavras-chave
+program = "program"
+void = "void"
+main = "main"
+int = "int"
+printf = "printf"
+scanf = "scanf"
+
+// Operadores
 SOMA = "+"
 SUBTRACAO = "-"
 MULTIPLICACAO = "*"
 DIVISAO = "/"
 IGUAL = "="
-smatches = ["\\s*\\w*\\(\"\\w*\"\\)\\s*"]
 
-program = "program"
+// Outros símbolos
+porcentagem = "%"
+ecomercial = "&"
+pontoevirgula = ";"
+virgula = ","
+abrePar = "("
+fechaPar = ")"
+abreChave = "{"
+fechaChave = "}"
+doisPontos = ":"
+STRING = \"([^\"\\]|\\.)*\"
+
+// Identificador
+ID = [a-zA-Z_][a-zA-Z0-9_]*
+
+// Espaços em branco
+brancos = [ \t\n\r]+
 
 %%
 
-{inteiro}   { return createToken("inteiro", yytext()); }
-{brancos}   {/**/}
-{ID}        { return createToken("ID", yytext()); }
-{SOMA}        { return createToken("SOMA", yytext()); }
-{SUBTRACAO}        { return createToken("SUBTRACAO", yytext()); }
-{MULTIPLICACAO}        { return createToken("MULTIPLICACAO", yytext()); }
-{DIVISAO}        { return createToken("DIVISAO", yytext()); }
-{IGUAL}        { return createToken("IGUAL", yytext()); }
-"scanf"         { return createToken("scanf", yytext()); }
-"%"         { return createToken("porcentagem", ""); }
-"&"         { return createToken("ecomercial", ""); }
-";"         { return createToken("pontoevirgula", ""); }
-","         { return createToken("virgula", ""); }
-"("         { return createToken("parenteseesquerdo", ""); }
-")"         { return createToken("parentesedireito", ""); }
-"{"         { return createToken("chaveesquerda", ""); }
-"}"         { return createToken("chavedireita", ""); }
-":"         { return createToken("doispontos", ""); }
-{smatches}  { /**/ }
-{program}   { return createToken(yytext(), ""); }
-. { throw new RuntimeException("Caractere inválido " + yytext() + " na linha " + yyline + ", na coluna " + yycolumn); }
+// Palavras-chave — colocar antes de ID
+{program}       { return createToken("program", yytext()); }
+{void}          { return createToken("void", yytext()); }
+{main}          { return createToken("main", yytext()); }
+{int}           { return createToken("int", yytext()); }
+{printf}        { return createToken("printf", yytext()); }
+{scanf}         { return createToken("scanf", yytext()); }
+
+// Tokens
+{STRING}        { return createToken("STRING", yytext()); }
+{inteiro}       { return createToken("inteiro", yytext()); }
+{SOMA}          { return createToken("SOMA", yytext()); }
+{SUBTRACAO}     { return createToken("SUBTRACAO", yytext()); }
+{MULTIPLICACAO} { return createToken("MULTIPLICACAO", yytext()); }
+{DIVISAO}       { return createToken("DIVISAO", yytext()); }
+{IGUAL}         { return createToken("IGUAL", yytext()); }
+
+{porcentagem}   { return createToken("porcentagem", yytext()); }
+{ecomercial}    { return createToken("ecomercial", yytext()); }
+{pontoevirgula} { return createToken("pontoevirgula", yytext()); }
+{virgula}       { return createToken("virgula", yytext()); }
+{abrePar}       { return createToken("parenteseesquerdo", yytext()); }
+{fechaPar}      { return createToken("parentesedireito", yytext()); }
+{abreChave}     { return createToken("chaveesquerda", yytext()); }
+{fechaChave}    { return createToken("chavedireita", yytext()); }
+{doisPontos}    { return createToken("doispontos", yytext()); }
+
+{ID}            { return createToken("ID", yytext()); }
+{brancos}       { /* ignora */ }
+
+. { throw new RuntimeException("Caractere inválido: '" + yytext() + "' na linha " + yyline + ", coluna " + yycolumn); }

@@ -63,12 +63,14 @@ public class LexicalAnalyzer {
   private static final int [] ZZ_CMAP_BLOCKS = zzUnpackcmap_blocks();
 
   private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
-    "\11\0\2\1\2\2\1\1\22\0\1\1\1\0\1\1"+
-    "\2\0\1\3\1\4\1\0\1\5\1\6\1\7\1\10"+
-    "\1\11\1\12\1\0\1\13\12\14\1\15\1\16\1\0"+
-    "\1\17\3\0\32\20\1\0\1\1\2\0\1\20\1\0"+
-    "\32\20\1\21\1\22\1\23\7\0\1\2\u01a2\0\2\2"+
-    "\326\0\u0100\2";
+    "\11\0\1\1\1\2\2\3\1\2\22\0\1\1\1\0"+
+    "\1\4\2\0\1\5\1\6\1\0\1\7\1\10\1\11"+
+    "\1\12\1\13\1\14\1\0\1\15\1\16\11\17\1\20"+
+    "\1\21\1\0\1\22\3\0\32\23\1\0\1\24\2\0"+
+    "\1\23\1\0\1\25\1\23\1\26\1\27\1\23\1\30"+
+    "\1\31\1\23\1\32\3\23\1\33\1\34\1\35\1\36"+
+    "\1\23\1\37\1\40\1\41\1\23\1\42\4\23\1\43"+
+    "\1\0\1\44\7\0\1\3\u01a2\0\2\3\326\0\u0100\3";
 
   private static int [] zzUnpackcmap_blocks() {
     int [] result = new int[1024];
@@ -95,12 +97,14 @@ public class LexicalAnalyzer {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\1\2\1\3\1\4\1\5\1\6\1\7"+
-    "\1\10\1\11\1\12\1\13\1\14\1\15\1\16\1\17"+
-    "\1\20\1\21\1\2\1\22";
+    "\1\0\1\1\1\2\1\1\1\3\1\4\1\5\1\6"+
+    "\1\7\1\10\1\11\1\12\1\13\2\14\1\15\1\16"+
+    "\1\17\6\20\1\21\1\22\1\0\1\23\1\0\5\20"+
+    "\1\24\5\20\1\25\3\20\1\26\2\20\1\27\1\30"+
+    "\1\20\1\31";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[20];
+    int [] result = new int[51];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -125,12 +129,16 @@ public class LexicalAnalyzer {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\24\0\24\0\24\0\24\0\24\0\24\0\24"+
-    "\0\24\0\24\0\24\0\24\0\50\0\24\0\24\0\24"+
-    "\0\74\0\24\0\74\0\24";
+    "\0\0\0\45\0\112\0\157\0\45\0\45\0\45\0\45"+
+    "\0\45\0\45\0\45\0\45\0\45\0\45\0\224\0\45"+
+    "\0\45\0\45\0\271\0\336\0\u0103\0\u0128\0\u014d\0\u0172"+
+    "\0\45\0\45\0\157\0\45\0\u0197\0\u01bc\0\u01e1\0\u0206"+
+    "\0\u022b\0\u0250\0\271\0\u0275\0\u029a\0\u02bf\0\u02e4\0\u0309"+
+    "\0\271\0\u032e\0\u0353\0\u0378\0\271\0\u039d\0\u03c2\0\271"+
+    "\0\271\0\u03e7\0\271";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[20];
+    int [] result = new int[51];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -153,13 +161,37 @@ public class LexicalAnalyzer {
   private static final int [] ZZ_TRANS = zzUnpacktrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\2\1\3\1\0\1\4\1\5\1\6\1\7\1\10"+
+    "\1\2\2\3\1\0\1\4\1\5\1\6\1\7\1\10"+
     "\1\11\1\12\1\13\1\14\1\15\1\16\1\17\1\20"+
-    "\1\21\1\22\1\23\1\24\40\0\1\15\23\0\1\21"+
-    "\3\0\1\21\1\0\1\21\1\0";
+    "\1\21\1\22\1\23\1\2\5\23\1\24\1\25\2\23"+
+    "\1\26\1\23\1\27\1\23\1\30\1\31\1\32\46\0"+
+    "\2\3\42\0\4\33\1\34\17\33\1\35\20\33\16\0"+
+    "\2\17\43\0\2\23\3\0\1\23\1\0\16\23\20\0"+
+    "\2\23\3\0\1\23\1\0\7\23\1\36\6\23\20\0"+
+    "\2\23\3\0\1\23\1\0\1\37\15\23\20\0\2\23"+
+    "\3\0\1\23\1\0\12\23\1\40\3\23\20\0\2\23"+
+    "\3\0\1\23\1\0\1\23\1\41\14\23\20\0\2\23"+
+    "\3\0\1\23\1\0\10\23\1\42\5\23\2\0\2\33"+
+    "\2\0\41\33\16\0\2\23\3\0\1\23\1\0\14\23"+
+    "\1\43\1\23\20\0\2\23\3\0\1\23\1\0\5\23"+
+    "\1\44\10\23\20\0\2\23\3\0\1\23\1\0\5\23"+
+    "\1\45\2\23\1\46\5\23\20\0\2\23\3\0\1\23"+
+    "\1\0\1\47\15\23\20\0\2\23\3\0\1\23\1\0"+
+    "\5\23\1\50\10\23\20\0\2\23\3\0\1\23\1\0"+
+    "\7\23\1\51\6\23\20\0\2\23\3\0\1\23\1\0"+
+    "\7\23\1\52\6\23\20\0\2\23\3\0\1\23\1\0"+
+    "\4\23\1\53\11\23\20\0\2\23\3\0\1\23\1\0"+
+    "\7\23\1\54\6\23\20\0\2\23\3\0\1\23\1\0"+
+    "\2\23\1\55\13\23\20\0\2\23\3\0\1\23\1\0"+
+    "\14\23\1\56\1\23\20\0\2\23\3\0\1\23\1\0"+
+    "\12\23\1\57\3\23\20\0\2\23\3\0\1\23\1\0"+
+    "\3\23\1\60\12\23\20\0\2\23\3\0\1\23\1\0"+
+    "\3\23\1\61\12\23\20\0\2\23\3\0\1\23\1\0"+
+    "\1\62\15\23\20\0\2\23\3\0\1\23\1\0\6\23"+
+    "\1\63\7\23\2\0";
 
   private static int [] zzUnpacktrans() {
-    int [] result = new int[80];
+    int [] result = new int[1036];
     int offset = 0;
     offset = zzUnpacktrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -202,10 +234,11 @@ public class LexicalAnalyzer {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\13\11\1\1\3\11\1\1\1\11\1\1\1\11";
+    "\1\0\1\11\2\1\12\11\1\1\3\11\6\1\2\11"+
+    "\1\0\1\11\1\0\26\1";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[20];
+    int [] result = new int[51];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -699,95 +732,130 @@ public class LexicalAnalyzer {
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1:
-            { throw new RuntimeException("Caractere inválido " + yytext() + " na linha " + yyline + ", na coluna " + yycolumn);
+            { throw new RuntimeException("Caractere inválido: '" + yytext() + "' na linha " + yyline + ", coluna " + yycolumn);
             }
           // fall through
-          case 19: break;
+          case 26: break;
           case 2:
-            { /**/
+            { /* ignora */
             }
           // fall through
-          case 20: break;
+          case 27: break;
           case 3:
-            { return createToken("porcentagem", "");
+            { return createToken("porcentagem", yytext());
             }
           // fall through
-          case 21: break;
+          case 28: break;
           case 4:
-            { return createToken("ecomercial", "");
+            { return createToken("ecomercial", yytext());
             }
           // fall through
-          case 22: break;
+          case 29: break;
           case 5:
-            { return createToken("parenteseesquerdo", "");
+            { return createToken("parenteseesquerdo", yytext());
             }
           // fall through
-          case 23: break;
+          case 30: break;
           case 6:
-            { return createToken("parentesedireito", "");
+            { return createToken("parentesedireito", yytext());
             }
           // fall through
-          case 24: break;
+          case 31: break;
           case 7:
             { return createToken("MULTIPLICACAO", yytext());
             }
           // fall through
-          case 25: break;
+          case 32: break;
           case 8:
             { return createToken("SOMA", yytext());
             }
           // fall through
-          case 26: break;
+          case 33: break;
           case 9:
-            { return createToken("virgula", "");
+            { return createToken("virgula", yytext());
             }
           // fall through
-          case 27: break;
+          case 34: break;
           case 10:
             { return createToken("SUBTRACAO", yytext());
             }
           // fall through
-          case 28: break;
+          case 35: break;
           case 11:
             { return createToken("DIVISAO", yytext());
             }
           // fall through
-          case 29: break;
+          case 36: break;
           case 12:
             { return createToken("inteiro", yytext());
             }
           // fall through
-          case 30: break;
+          case 37: break;
           case 13:
-            { return createToken("doispontos", "");
+            { return createToken("doispontos", yytext());
             }
           // fall through
-          case 31: break;
+          case 38: break;
           case 14:
-            { return createToken("pontoevirgula", "");
+            { return createToken("pontoevirgula", yytext());
             }
           // fall through
-          case 32: break;
+          case 39: break;
           case 15:
             { return createToken("IGUAL", yytext());
             }
           // fall through
-          case 33: break;
+          case 40: break;
           case 16:
             { return createToken("ID", yytext());
             }
           // fall through
-          case 34: break;
+          case 41: break;
           case 17:
-            { return createToken("chaveesquerda", "");
+            { return createToken("chaveesquerda", yytext());
             }
           // fall through
-          case 35: break;
+          case 42: break;
           case 18:
-            { return createToken("chavedireita", "");
+            { return createToken("chavedireita", yytext());
             }
           // fall through
-          case 36: break;
+          case 43: break;
+          case 19:
+            { return createToken("STRING", yytext());
+            }
+          // fall through
+          case 44: break;
+          case 20:
+            { return createToken("int", yytext());
+            }
+          // fall through
+          case 45: break;
+          case 21:
+            { return createToken("main", yytext());
+            }
+          // fall through
+          case 46: break;
+          case 22:
+            { return createToken("void", yytext());
+            }
+          // fall through
+          case 47: break;
+          case 23:
+            { return createToken("scanf", yytext());
+            }
+          // fall through
+          case 48: break;
+          case 24:
+            { return createToken("printf", yytext());
+            }
+          // fall through
+          case 49: break;
+          case 25:
+            { return createToken("program", yytext());
+            }
+          // fall through
+          case 50: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }
