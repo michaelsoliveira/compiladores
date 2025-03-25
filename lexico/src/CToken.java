@@ -1,5 +1,3 @@
-package lexico.src;
-
 public class CToken {
     public String name;
     public String value;

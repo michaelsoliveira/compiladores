@@ -1,4 +1,3 @@
-package lexico.src;
 import java.io.File;
 
 public class GeneratorC {
