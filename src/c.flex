@@ -1,10 +1,21 @@
-package lexico.src;
+package src;
 
 import java_cup.runtime.*;
 
 %%
 
 %{
+    private ErrorList listaErros;
+
+    public LexicalAnalyzer(java.io.FileReader in, ErrorList listaErros){
+        this(in);
+        this.listaErros = listaErros;
+    }
+
+    public ErrorList getListaErros() {
+        return listaErros;
+    }
+
     private CToken createToken(String name, String value) {
         return new CToken(name, value, yyline, yycolumn);
     }
@@ -84,4 +95,4 @@ brancos = [ \t\n\r]+
 {ID}            { return createToken("ID", yytext()); }
 {brancos}       { /* ignora */ }
 
-. { throw new RuntimeException("Caractere inválido: '" + yytext() + "' na linha " + yyline + ", coluna " + yycolumn); }
+. { listaErros.addError("Caractere inválido: '" + yytext() + "'", yyline, yycolumn); }

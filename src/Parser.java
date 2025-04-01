@@ -1,12 +1,16 @@
+package src;
+
 import java.io.IOException;
 
 public class Parser {
     private LexicalAnalyzer lexer;
     private CToken lookahead;
+    private ErrorList errorList; // Lista de erros
 
-    public Parser(LexicalAnalyzer lexer) throws IOException {
+    public Parser(LexicalAnalyzer lexer, ErrorList errorList) throws IOException {
         this.lexer = lexer;
         this.lookahead = lexer.yylex();
+        this.errorList = errorList;
     }
 
     private void consume(String expected) throws IOException {
@@ -19,12 +23,20 @@ public class Parser {
     }
 
     private void error(String msg) {
-        throw new RuntimeException("Erro sintático [linha " + lookahead.line + ", coluna " + lookahead.column + "]: " + msg);
+        if (lookahead != null) {
+            errorList.addError("Erro sintático: " + msg, lookahead.line, lookahead.column);
+        } else {
+            errorList.addError("Erro sintático: " + msg, -1, -1);
+        }
+        // throw new RuntimeException("Erro sintático [linha " + lookahead.line + ", coluna " + lookahead.column + "]: " + msg);
     }
 
     public void parse() throws IOException {
         programa();
-        System.out.println("Análise sintática concluída com sucesso.");
+        System.out.println("Análise sintática concluída com sucesso.\n");
+        if (errorList.hasErrors()) {
+            errorList.printErrors();
+        }
     }
 
     // program ID ; void main() ( ) { ... }
