@@ -5,12 +5,15 @@ import java.io.IOException;
 public class Parser {
     private LexicalAnalyzer lexer;
     private CToken lookahead;
-    private ErrorList errorList; // Lista de erros
+    private ErrorList errorList;
+    private SymbolTable symbolTable;
 
-    public Parser(LexicalAnalyzer lexer, ErrorList errorList) throws IOException {
-        this.lexer = lexer;
-        this.lookahead = lexer.yylex();
-        this.errorList = errorList;
+    public Parser(LexicalAnalyzer lexer, ErrorList errorList, SymbolTable symbolTable) 
+        throws IOException {
+            this.lexer = lexer;
+            this.lookahead = lexer.yylex();
+            this.errorList = errorList;
+            this.symbolTable = symbolTable;
     }
 
     private void consume(String expected) throws IOException {
@@ -77,10 +80,23 @@ public class Parser {
 
     private void declaracaoVariavel() throws IOException {
         consume("int");
-        consume("ID");
+        if (lookahead.name.equals("ID")) {
+            if (symbolTable.isDeclared(lookahead.value)){
+                error("Variável já declarada: " + lookahead.value);
+            }
+            symbolTable.declare(lookahead.value, "int");
+            consume("ID");
+        }
+
         while (lookahead.name.equals("virgula")) {
             consume("virgula");
-            consume("ID");
+            if (lookahead.name.equals("ID")) {
+                if (symbolTable.isDeclared(lookahead.value)){
+                    error("Variável já declarada: " + lookahead.value);
+                }
+                symbolTable.declare(lookahead.value, "int");
+                consume("ID");
+            }
         }
         consume("pontoevirgula");
     }
@@ -142,6 +158,9 @@ public class Parser {
     }
 
     private void expressao() throws IOException {
+        if (!symbolTable.isDeclared(lookahead.value)) {
+            error("Variável não declarada: " + lookahead.value)
+        }
         consume("ID");
         consume("IGUAL");
         expr();
