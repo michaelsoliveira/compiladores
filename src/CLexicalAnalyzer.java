@@ -9,7 +9,6 @@ public class CLexicalAnalyzer {
         String path = new File("").getAbsolutePath() + "\\src\\program.c";
         ErrorList listaErros = new ErrorList();
         LexicalAnalyzer lexer = new LexicalAnalyzer(new FileReader(path), listaErros);
-
         // CToken token;
 
         // while ((token = lexer.yylex()) != null) {

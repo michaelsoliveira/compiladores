@@ -6,14 +6,13 @@ public class Parser {
     private LexicalAnalyzer lexer;
     private CToken lookahead;
     private ErrorList errorList;
-    private SymbolTable symbolTable;
+    private final SymbolTable symbolTable = new SymbolTable();
 
-    public Parser(LexicalAnalyzer lexer, ErrorList errorList, SymbolTable symbolTable) 
+    public Parser(LexicalAnalyzer lexer, ErrorList errorList) 
         throws IOException {
             this.lexer = lexer;
             this.lookahead = lexer.yylex();
             this.errorList = errorList;
-            this.symbolTable = symbolTable;
     }
 
     private void consume(String expected) throws IOException {
@@ -37,8 +36,11 @@ public class Parser {
     public void parse() throws IOException {
         programa();
         System.out.println("Análise sintática concluída com sucesso.\n");
+        
         if (errorList.hasErrors()) {
             errorList.printErrors();
+        } else {
+            printSymbols();
         }
     }
 
@@ -81,7 +83,7 @@ public class Parser {
     private void declaracaoVariavel() throws IOException {
         consume("int");
         if (lookahead.name.equals("ID")) {
-            if (symbolTable.isDeclared(lookahead.value)){
+            if (symbolTable.exists(lookahead.value)){
                 error("Variável já declarada: " + lookahead.value);
             }
             symbolTable.declare(lookahead.value, "int");
@@ -91,7 +93,7 @@ public class Parser {
         while (lookahead.name.equals("virgula")) {
             consume("virgula");
             if (lookahead.name.equals("ID")) {
-                if (symbolTable.isDeclared(lookahead.value)){
+                if (symbolTable.exists(lookahead.value)){
                     error("Variável já declarada: " + lookahead.value);
                 }
                 symbolTable.declare(lookahead.value, "int");
@@ -158,8 +160,8 @@ public class Parser {
     }
 
     private void expressao() throws IOException {
-        if (!symbolTable.isDeclared(lookahead.value)) {
-            error("Variável não declarada: " + lookahead.value)
+        if (!symbolTable.exists(lookahead.value)) {
+            error("Variável não declarada: " + lookahead.value);
         }
         consume("ID");
         consume("IGUAL");
@@ -205,5 +207,18 @@ public class Parser {
                 error("Esperado: ID, inteiro ou '(', encontrado: " + lookahead.name);
                 break;
         }
+    }
+
+    public void parseDeclaration(String type, String name) {
+        try {
+            symbolTable.declare(name, type);
+            System.out.println("Declarado: " + name + " do tipo " + type);
+        } catch (RuntimeException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    public void printSymbols() {
+        symbolTable.printTable();
     }
 }
